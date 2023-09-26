@@ -1,7 +1,7 @@
 node {
    def mvnHome
   stage('Prepare') {
-      git url: 'https://github.com/kesavkummari/b810am.git', branch: 'jira2023aug'
+      git url: 'https://github.com/krishnagirineer/b810am-1.git', branch: 'jira2023_aug'
       mvnHome = tool 'maven'
    }
   stage ('Code Scanning') {
@@ -32,9 +32,9 @@ node {
       sh "'${mvnHome}/bin/mvn' deploy"
   }
   stage ('Deliver & Deployment') {
-      sh 'curl -u admin:redhat@123 -T target/**.war "http://52.66.118.99:8080/manager/text/deploy?path=/devops&update=true"'
+      sh 'curl -u admin:redhat@123 -T target/**.war "http://13.232.183.10:8080/manager/text/deploy?path=/devops&update=true"'
   }
   stage ('SmokeTest') {
-      sh 'curl --retry-delay 10 --retry 5 "http://52.66.118.99:8080/devops"'
+      sh 'curl --retry-delay 10 --retry 5 "http://13.232.183.10:8080/devops"'
   }
 }
